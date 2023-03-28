@@ -1,0 +1,28 @@
+<h1>Lista de alumnos</h1>
+<table class="table table-stripped">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Nombre completo</th>
+      <th>E-mail</th>
+      <th>Edad</th>
+      <th>Género</th>
+      <th>Fecha de Nacimiento</th>
+      <th>Nota</th>
+    </tr>
+  </thead>
+  <tbody >
+    <tr *ngFor="let usuario of usuarios" [ngClass]=" usuario.isTop10 ? 'table-success' : ''">
+      <td>{{usuario.id}}</td>
+      <td>{{usuario.fullName}}</td>
+      <td>{{usuario.email}}</td>
+      <td>{{usuario.age}}</td>
+      <td [ngSwitch]="usuario.gender">
+        <span *ngSwitchCase="'F'" ><fa-icon [icon]="faFemale" class="text-danger p-3"></fa-icon></span>
+        <span *ngSwitchCase="'M'" ><fa-icon [icon]="faMale" class="text-primary p-3"></fa-icon></span>
+      </td>
+      <td>{{usuario.birthdate | date}}</td>
+      <td [ngClass]="usuario.percent > 6 ? 'text-success' : 'text-danger'">{{usuario.percent}}</td>
+    </tr>
+  </tbody>
+</table>
